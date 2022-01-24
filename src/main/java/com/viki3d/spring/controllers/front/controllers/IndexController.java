@@ -20,9 +20,13 @@ public class IndexController {
   private Car car = new Car("Toyota", "Corolla");
 
   /**
-   * Index.
+   * Index page. Allows you to choose which link to open:
+   * <ul>
+   *   <li>the original url</li>
+   *   <li>the url with modified response</li>
+   * </ul>
    *
-   * @return the car as JSON.
+   * @return Index.
    */
   @GetMapping(path = "/")
   public String index() {
