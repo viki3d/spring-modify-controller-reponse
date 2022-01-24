@@ -7,7 +7,7 @@ Actually we do not use Spring here (like Spring Interceptors /they can modify on
 a Servlet technique - Filters:  
 ![spring-modify-controller-response-01.png](spring-modify-controller-response-01.png?id=1)  
 
-And here is how we update the response JSON with the additional field _year_ :
+And here is how we update the response JSON with the additional field `"year" : 2020` :
 ![spring-modify-controller-response-01.png](spring-modify-controller-response-02.png?id=1)  
 
 ### JSON libraries:
@@ -22,6 +22,8 @@ And here is how we update the response JSON with the additional field _year_ :
   &lt;/dependency>  
 
 ### Servlet-Filter:
+> import javax.servlet.Filter;  
+> 
 > @Component  
   public class CarFilter implements Filter {  
 > &nbsp;&nbsp;  @Override  
