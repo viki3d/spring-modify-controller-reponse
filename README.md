@@ -10,6 +10,17 @@ a Servlet technique - Filters:
 And here is how we update the response JSON with the additional field `"year" : 2020` :
 ![spring-modify-controller-response-01.png](spring-modify-controller-response-02.png?id=1)  
 
+### Controller:  
+> @GetMapping(path = "/car")  
+  public ResponseEntity<Car> car() {  
+  &nbsp;&nbsp; return ResponseEntity.ok(car); //{"brand":"Toyota", "model":"Corolla"}  
+  }  
+>	
+> @GetMapping(path = "/modcar")  
+  public ResponseEntity<Car> car() {  
+  &nbsp;&nbsp; return ResponseEntity.ok(car); //{"brand":"Toyota", "model":"Corolla","year":2020}  
+  }  
+
 ### JSON libraries:
 > &lt;dependency>  
   &nbsp;&nbsp;&lt;groupId>javax.json&lt;/groupId>  
