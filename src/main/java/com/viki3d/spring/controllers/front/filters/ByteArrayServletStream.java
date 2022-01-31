@@ -28,7 +28,7 @@ public class ByteArrayServletStream extends ServletOutputStream {
 
   @Override
   public void setWriteListener(WriteListener listener) {
-
+    throw new UnsupportedOperationException();
   }
   
 }

@@ -39,6 +39,9 @@ public class CarFilter implements Filter {
     HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
     HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
 
+    logger.debug("uri = {}", httpRequest.getRequestURI());
+    logger.debug("qus = {}", httpRequest.getQueryString());
+    
     if (httpRequest.getRequestURI().equals("/modcar")) {
       ByteArrayPrinter pw = new ByteArrayPrinter();
       HttpServletResponse wrappedResponse = new HttpServletResponseWrapper(httpResponse) {
@@ -59,7 +62,7 @@ public class CarFilter implements Filter {
       // Get response
       byte[] bytes = pw.toByteArray();
       String respBody = new String(bytes); //{"brand":"Toyota","model":"Corolla"}
-      logger.debug("Original response: " + respBody);
+      logger.debug("Original response: {}", respBody);
 
       // Convert response as JSON
       JsonReader jsonReader = Json.createReader(new StringReader(respBody));
@@ -76,7 +79,7 @@ public class CarFilter implements Filter {
       // - add additional attribute to car's JSON:
       job.add(JSON_NAME_YEAR, JSON_VALUE_YEAR);
       modRespBody = job.build().toString();
-      logger.debug("Modified response: " + modRespBody);
+      logger.debug("Modified response: {}", modRespBody);
 
       // Change the `Content-Type` header if needed:
       //httpResponse.setHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE);
@@ -84,7 +87,7 @@ public class CarFilter implements Filter {
       httpResponse.setContentLength(modRespBody.length());
 
       // Write the new modified response
-      httpResponse.getOutputStream().write(modRespBody.toString().getBytes());
+      httpResponse.getOutputStream().write(modRespBody.getBytes());
       httpResponse.getOutputStream().flush();
     } else {
       // Forward execution
